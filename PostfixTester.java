@@ -8,8 +8,7 @@ import java.util.EmptyStackException;
 import java.util.NotEnoughNumbersException;
 //import java.util.NotEnoughOperationsException;
 
-public class PostfixTester    
-{
+public class PostfixTester{
     /**
      * Reads and evaluates multiple postfix expressions.
      * @throws NotEnoughNumbersException 
@@ -35,17 +34,10 @@ public class PostfixTester
 	                result = evaluator.evaluate(expression);
 	                System.out.println();
 	                System.out.println("That expression equals " + result);
-	                
-	                
-	                
+	                throw new NotEnoughNumbersException();
 	        		} // end of while loop
 	            catch(EmptyStackException e){
-	        			System.out.print( e.getMessage() + "\nThis is a incomplete equation \n" + "\n");  
-	        			
-	        			if(evaluator.evaluate(expression)) {
-	        				throw new NotEnoughNumbersException();  
-	        			} // end of if statement 
-	        			         		
+	        			System.out.print( e.getMessage() + "\nThis is a incomplete equation \n" + "\n"); 
 	        	} // end of catch exception
 	            catch(NotEnoughNumbersException m){
         			System.out.print( m.getMessage()); 
