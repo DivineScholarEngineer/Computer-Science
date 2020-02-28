@@ -1,25 +1,29 @@
-// Scanner object
-import java.util.Scanner;
+package PostifixRelation;
 
+// Scanner object
 // exception classes
 // pre-existed class
-import java.util.EmptyStackException;
 // custom exception classes
-import java.util.NotEnoughNumbersException;
-//import java.util.NotEnoughOperationsException;
+import java.util.*;
+
+import java.lang.SecurityException;
+
+import java.lang.*;
+
 
 public class PostfixTester{
     /**
      * Reads and evaluates multiple postfix expressions.
      * @throws NotEnoughNumbersException 
      */
-	public static void main(String []args) throws EmptyStackException, NotEnoughNumbersException{
-		String expression, again;
+	
+	
+	 public static void main(String []args) {
+	        String expression, again;
 	        int result;
 	        
 	        // creating a Scanner variable
 	        Scanner in = new Scanner(System.in);
-	        
 	        do
 	        {  
 	            // initial the PostfixEvaluator class
@@ -34,15 +38,21 @@ public class PostfixTester{
 	                result = evaluator.evaluate(expression);
 	                System.out.println();
 	                System.out.println("That expression equals " + result);
-	                throw new NotEnoughNumbersException();
-	        		} // end of while loop
-	            catch(EmptyStackException e){
-			    System.out.print( e.getMessage() + "\nThis is a incomplete equation \n" + "\n"); 
+	              	if(result == -1) {	                	
+	            		throw new NotEnoughOperationsException();
+	              	}else {
+	              		throw new NotEnoughNumbersException();	/*	*/	                  
+	              	}                   
+        		} // end of try
+	            catch(EmptyStackException e) {
+	        			System.out.print("\n" + e.getMessage() + "\nThis is a incomplete equation \n" + "\n"); 
 	        	} // end of catch exception
 	            catch(NotEnoughNumbersException m){
-			    System.out.print( m.getMessage()); 
-	            } // end of catch  
-	          
+        			System.out.print( m.getMessage()); 
+	            } // end of  /**/
+	            catch(NotEnoughOperationsException r){
+        			System.out.print( r.getMessage()); 
+	            } // end of
 	          System.out.print("Evaluate another expression [Y/N]? ");
 	            again = in.nextLine();
 	            System.out.println();
