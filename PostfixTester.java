@@ -13,8 +13,8 @@ public class PostfixTester{
      * Reads and evaluates multiple postfix expressions.
      * @throws NotEnoughNumbersException 
      */
-	 public static void main(String []args) throws EmptyStackException, NotEnoughNumbersException{
-	        String expression, again;
+	public static void main(String []args) throws EmptyStackException, NotEnoughNumbersException{
+		String expression, again;
 	        int result;
 	        
 	        // creating a Scanner variable
