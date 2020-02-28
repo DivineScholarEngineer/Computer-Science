@@ -63,7 +63,7 @@ public class PostfixEvaluator {
                 result = op1 + op2;
                 break;
                 
-            case SUBTRACT:
+            case SUBTRACT: 
                 result = op1 - op2;
                 break;
                 
