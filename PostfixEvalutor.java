@@ -1,83 +1,94 @@
-import java.util.Scanner;
+// import all class and objects that are neccessary that isn't included
 import java.util.*;
 
-public class PostfixEvalutor{
-  
-  public PostfixEvalutor(){
+// Scanner object
+import java.util.Scanner;
+
+// Stack object
+import java.util.Stack;
+
+
+
+public class PostfixEvaluator {
+    // constants variables
+    private final static char ADD      = '+';
+    private final static char SUBTRACT = '-';
+    private final static char MULTIPLY = '*';
+    private final static char DIVIDE = '/';
+    private final static char MODULUS = '%';
+    private final static char POWER = '^';
+    private final static char UNARYMINUS = '~';  
     
-  } // end of PostfixEvalutor constructor
-  
-  // String array
-  String[] equationType = {"Prefix" ,"Infix", "Postfix"}; 
-  
-  // Scanner object
-  Scanner keyboard = new Scanner(System.in);
-  
-  // Scanner container
-  String userEquation;
-  
-  // additional math
-  private String baseNumber;
-  private String userPower;
-  private int absoluteValue = Math.abs(baseNumber);
-  private final int POWER = Math.pow(baseNumber,userPower);
-  private final String SQUAREROOT;
-  
-  // constants for basic operations =
-  private final String ADD = "+";
-  private final String SUBTRACT = "-";
-  private final String MULTIPLY= "*";
-  private final String DIVIDE = "/";
-  
-  // user number
-  String
-  
-  public void IntroPostfix(){
-   System.out.print("Welcome to Postfix Evalutor/n" + "What type of equation would you like to input\n" + 
-   "The types of equations include "); 
-   for(int i = 0; i <= equationType.length; i++){
-     System.out.print(equationType[i] + " ");
-     for(int i = 0; i < equationType.length; i++){
-     System.out.print(", ");        
-     } // end of nested for loop
-   } // end of for loop
-   System.out.print(Your choice: );
-   userEquation = keyboard.nextLine
-   equationTypeChecker();
-   
-   
-  /* do{
-      
-   }(userEquation.equalsIgnoreCase(equationType[0]) ||){
+    // stack variable
+    private Stack<Integer> stack;
     
-   } // end of while loop*/
-   
-  } // end of IntroPostfix method
-  
-  public void operation(String useroperation){
-    switch(useroperation){
-      case ADD:
-        System.out.print
-        break;
-      A
-   } // end of switch statement
-  } // end of operation method
-  
-  public void equationTypeChecker(boolean isPrefix, boolean isInfix, boolean isPostfix){
-    try{
-    for(int i = 0; i < equationType.length; i++){
-      while(onType[i]){
-         System.out.print();
-      }
-     } // end of for loop
-    } // end of try
-    catch(exception e){
-      
-    } // end of catch exception
-  } // end of equationTypeChecker method
-  
-  public static void main(String args[]){ 
-    PostfixEvalutor evaluate = new PostfixEvalutor();
-    evaluate.
-  }
-} // end of PostfixEvalutor class
+    // PostfixEvaluator constructor
+    public PostfixEvaluator() {
+        stack = new Stack<Integer>();
+    } // end of PostfixEvaluator constructor
+    
+    public int evaluate(String expr) {
+        int op1, op2, result = 0;
+        String token;
+        Scanner parser = new Scanner(expr);
+
+        while (parser.hasNext()) {
+            token = parser.next();
+            boolean isPostfix = false;
+            if (isOperator(token)) {
+                op2 = stack.pop();
+                op1 = stack.pop();
+                result = evaluateSingleOperator(token.charAt(0), op1, op2, isPostfix);
+                stack.push(result);
+            } // end of if statement
+            else
+                stack.push(Integer.parseInt(token));
+        } // end of while loop
+
+        parser.close();
+        return (stack.pop());
+    } // end of evaluate method
+     
+     private boolean isOperator(String token) {
+        return ( token.equals("+") || token.equals("-") || 
+                 token.equals("*") || token.equals("/") || token.equals("%") || token.equals("^"));
+        // OR return ("+-*/".indexOf(token) >= 0);
+    } // end of isOperator method
+    
+    private int evaluateSingleOperator(char operation, int op1, int op2, boolean isPostfix) {
+        int result = 0;
+
+        switch (operation) {
+            case ADD:
+                result = op1 + op2;
+                break;
+                
+            case SUBTRACT:
+                result = op1 - op2;
+                break;
+                
+            case MULTIPLY:
+                result = op1 * op2;
+                break;
+                
+            case DIVIDE:
+                result = op1 / op2;
+                break;
+            case MODULUS:
+                result = op1 % op2;
+                break;
+            case POWER:
+                result = (int)Math.pow(op1, op2);
+                break;
+            case UNARYMINUS: 
+                result = op1 + - op2;
+                break;
+            //
+            default:
+                
+        } // end of swtch statement
+        
+        return result;
+    } // end of evaluateSingleOperator method
+    
+} // end of PostfixEvaluator class
