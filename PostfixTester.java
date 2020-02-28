@@ -37,11 +37,11 @@ public class PostfixTester{
 	                throw new NotEnoughNumbersException();
 	        		} // end of while loop
 	            catch(EmptyStackException e){
-	        			System.out.print( e.getMessage() + "\nThis is a incomplete equation \n" + "\n"); 
+			    System.out.print( e.getMessage() + "\nThis is a incomplete equation \n" + "\n"); 
 	        	} // end of catch exception
 	            catch(NotEnoughNumbersException m){
-        			System.out.print( m.getMessage()); 
-	            } // end of 
+			    System.out.print( m.getMessage()); 
+	            } // end of catch  
 	          
 	          System.out.print("Evaluate another expression [Y/N]? ");
 	            again = in.nextLine();
@@ -50,4 +50,4 @@ public class PostfixTester{
 	        
 	        in.close();
 	    } // end of main method
-}
+} // end of PostfixTester class
