@@ -1,3 +1,4 @@
+package PostifixRelation;
 // import all class and objects that are neccessary that isn't included
 import java.util.*;
 
@@ -18,7 +19,7 @@ public class PostfixEvaluator {
     private final static char MODULUS = '%';
     private final static char POWER = '^';
     private final static char UNARYMINUS = '~';  
-    
+    private final static char FACTORIALS = '!';      
     // stack variable
     private Stack<Integer> stack;
     
@@ -81,9 +82,14 @@ public class PostfixEvaluator {
                 result = (int)Math.pow(op1, op2);
                 break;
             case UNARYMINUS: 
-                result = op1 + - op2;
+                result = op1 + (-op2);
                 break;
-            //
+            case FACTORIALS: 
+                for(int i = 1; i <= op1; i++) {
+                	op1 = op1 * i;
+                	result = op1;
+                }
+                break;
             default:
                 
         } // end of swtch statement
