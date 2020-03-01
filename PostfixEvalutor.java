@@ -28,8 +28,8 @@ public class PostfixEvaluator {
         stack = new Stack<Integer>();
     } // end of PostfixEvaluator constructor
     
+    int op1, op2, result = 0;
     public int evaluate(String expr) {
-        int op1, op2, result = 0;
         String token;
         Scanner parser = new Scanner(expr);
 
@@ -96,5 +96,38 @@ public class PostfixEvaluator {
         
         return result;
     } // end of evaluateSingleOperator method
+    
+   /*public void equationLengthCheckerExpection() throws EquationIncompleteException{
+    	try {
+	    	if(op1 > op2) {
+        		throw new EquationIncompleteException();
+	    	} // end of if statement
+	    	else if(op1 < op2) {
+        		throw new EquationIncompleteException();
+	    	} // end of else if statement
+    	} catch(EquationIncompleteException r) {
+    		System.out.print(r.getMessage());    		
+    	} 
+    } // end numberCheckerExpection method*/ 
+
+    public void numberCheckerExpection() throws NotEnoughNumbersException{
+    	try {
+	    	if(op1 > op2) {
+        		throw new NotEnoughNumbersException();
+	    	} // end of if statement
+    	} catch(NotEnoughNumbersException e) {
+    		System.out.print(e.getMessage());
+    	} // end numberCheckerExpection method
+    } // end of numberCheckerExpection method
+    
+    public void operationCheckerExpection() throws NotEnoughOperationsException{
+    	try {
+	    	if(op1 < op2) {
+        		throw new NotEnoughOperationsException();
+	    	} // end of if statement
+    	} catch(NotEnoughOperationsException r) {
+    		System.out.print(r.getMessage());    		
+    	} // end of catch
+    } // end numberCheckerExpection method
     
 } // end of PostfixEvaluator class
